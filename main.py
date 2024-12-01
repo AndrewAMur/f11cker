@@ -19,6 +19,11 @@ items = ['@', '#', '&', '%', '$']
 item_positions = []
 flame_intensity = 27
 
+color_reset = "\033[0m"
+color_red = "\033[31m"
+color_yellow = "\033[33m"
+color_light_red = "\033[38;5;9m"
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -27,13 +32,14 @@ def render_map():
     for r, row in enumerate(game_map):
         row_str = list(row)
         if r == player_pos[0]:
-            row_str[player_pos[1]] = 'i'
+            row_str[player_pos[1]] = f"{color_red}i{color_reset}"
         for pos in item_positions:
             if pos[0] == r:
-                row_str[pos[1]] = random.choice(items)
+                row_str[pos[1]] = f"{color_yellow}{random.choice(items)}{color_reset}"
         print("".join(row_str))
-    
-    print(f"\nFlame intensity: {flame_intensity}")
+
+    flame_color = color_light_red if flame_intensity <= 3 else color_reset
+    print(f"\n{flame_color}Flame intensity: {flame_intensity}{color_reset}")
     print("\nMove with W/A/S/D, or Q to quit.\n")
 
 def place_item():
@@ -47,10 +53,10 @@ def place_item():
 def check_flame_status():
     global flame_intensity
     if flame_intensity <= 0:
-        print("\nThe flame fades to nothing. The darkness wins.")
+        print(f"\n{color_light_red}The flame fades to nothing. The darkness wins.{color_reset}")
         return True
     elif flame_intensity <= 3:
-        print("\nThe flame flickers weakly. Is it better to burn out or let the darkness win?")
+        print(f"\n{color_light_red}The flame flickers weakly. Is it better to burn out or let the darkness win?{color_reset}")
     return False
 
 for _ in range(7):
@@ -65,7 +71,7 @@ while True:
     move = input("Enter your move: ").lower()
 
     if move == 'q':
-        print("The flame flickers and dies. You have chosen the darkness.")
+        print(f"{color_light_red}The flame flickers and dies. You have chosen the darkness.{color_reset}")
         break
 
     new_pos = player_pos[:]
@@ -83,7 +89,7 @@ while True:
         continue
 
     if new_pos[0] < 0 or new_pos[0] >= len(game_map) or new_pos[1] < 0 or new_pos[1] >= len(game_map[0]):
-        print("The void blocks your path.")
+        print(f"{color_light_red}The void blocks your path.{color_reset}")
         time.sleep(1)
         continue
 
