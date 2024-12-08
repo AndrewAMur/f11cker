@@ -1,8 +1,6 @@
-**Description:**  
-In a pitch-black void, a tiny flame flickers weakly, clinging to life. Its only hope is to feed on what little it can find—small, scattered objects hidden in the darkness.
-
-**Notes:**  
-- The flame is fragile.  
-- Look carefully for items to feed it.  
-- As it dims, questions will rise.  
-- Will you burn brightly or let the void swallow you whole?  
+*A flicker weak in endless black,*
+*A flame that dares not turn back.*
+*Objects found in darkened night,*
+*Will feed the spark and hold it tight.*
+*Questions rise as shadows crawl—*
+*Will you burn or let it fall?*
